@@ -15,10 +15,6 @@ $router->add('/user/edit/submit', ['controller' => 'user', 'action' => 'editSubm
 // kamar
 $router->add('/kamar', ['controller' => 'kamar', 'action' => 'index']);
 
-// fasilitas
-$router->add('/fasilitas', ['controller' => 'fasilitas', 'action' => 'index']);
-$router->add('/fasilitas/pesan', ['controller' => 'fasilitas', 'action' => 'pesan']);
-
 // reservasi
 $router->add('/reservation/checkin', ['controller' => 'reservation', 'action' => 'checkin']);
 $router->add('/reservation/checkin/submit', ['controller' => 'reservation', 'action' => 'checkinSubmit']);

@@ -71,16 +71,12 @@
                     <li class="nav-item active">
                         <?= $this->tag->linkTo(["kamar", '<i aria-hidden="true"></i> Kamar <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
                     </li>
-                    <li class="nav-item active">
-                        <?= $this->tag->linkTo(["fasilitas", '<i aria-hidden="true"></i> Fasilitas <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
-                    </li>
                     <li class="nav-item active dropdown">
                         <?php if ($this->session->has('IS_LOGIN')) : ?>
                             <a id='navbarDropdown' class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Reservasi <span class="caret"></span>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <?= $this->tag->linkTo(["reservation/checkin", '<i  aria-hidden="true"></i> Check-In <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
-                                <?= $this->tag->linkTo(["fasilitas/pesan", '<i aria-hidden="true"></i> Pemesanan Fasilitas <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
                                 <?= $this->tag->linkTo(["reservation/bayar", '<i aria-hidden="true"></i> Pembayaran Pemesanan <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
                                 <?= $this->tag->linkTo(["reservation/komentar", '<i aria-hidden="true"></i> Pemberian Komentar <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
                                 <?= $this->tag->linkTo(["reservation/checkout", '<i aria-hidden="true"></i> Check-Out <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
