@@ -4,6 +4,8 @@ use Phalcon\Http\Request;
 // use form
 use App\Forms\RegisterForm;
 use App\Forms\LoginForm;
+use App\Forms\EditForm;
+
 
 class UserController extends ControllerBase
 {
@@ -149,14 +151,12 @@ class UserController extends ControllerBase
             }
         }
 
-        # Doc :: https://docs.phalconphp.com/en/3.3/security
         $this->usersModel->setPassword($this->security->hash($_POST['password']));
 
         $this->usersModel->setActive(1);
         $this->usersModel->setCreated(time());
         $this->usersModel->setUpdated(time());
         
-        # Doc :: https://docs.phalconphp.com/en/3.3/db-models#create-update-records
         if (!$this->usersModel->save()) {
             foreach ($this->usersModel->getMessages() as $m) {
                 $this->flashSession->error($m);
@@ -180,7 +180,6 @@ class UserController extends ControllerBase
      */
     public function profileAction()
     {
-        $this->authorized();
     }
 
     /**
@@ -190,6 +189,42 @@ class UserController extends ControllerBase
     {
         $this->session->destroy();
         return $this->response->redirect('user/login');
+    }
+
+    public function editAction()
+    {
+        $this->view->form = new EditForm();
+    }
+
+    public function editSubmitAction()
+    {
+        $form = new EditForm();
+        // check request
+        if (!$this->request->isPost()) {
+            return $this->response->redirect('user/edit');
+        }
+        
+        // check form validation
+        // if (!$form->isValid()) {
+        //     foreach ($form->getMessages() as $message) {
+        //         $this->flashSession->error($message);
+        //         $this->dispatcher->forward([
+        //             'controller' => $this->router->getControllerName(),
+        //             'action'     => 'edit',
+        //         ]);
+        //         return;
+        //     }
+        // }
+        
+        // login with database
+        $nama    = $this->request->getPost('name');
+        $email = $this->request->getPost('email');
+
+        $this->session->set('AUTH_NAME', $user->name);
+        $this->session->set('AUTH_EMAIL', $user->email);
+          
+        $this->flashSession->success("Edit Success");
+        return $this->response->redirect('user/profile');
     }
 }
 

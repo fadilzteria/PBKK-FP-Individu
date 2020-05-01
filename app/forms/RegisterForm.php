@@ -77,8 +77,8 @@ class RegisterForm extends Form
          * Submit Button
          */
         $submit = new Submit('submit', [
-            "value" => "Register",
-            "class" => "btn btn-primary",
+            "value" => "Registrasi",
+            "class" => "btn btn-success",
         ]);
 
         $this->add($name);

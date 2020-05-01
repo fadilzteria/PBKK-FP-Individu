@@ -66,13 +66,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <?= $this->tag->linkTo(["", '<i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
+                        <?= $this->tag->linkTo(["", '<i aria-hidden="true"></i> Beranda <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
                     </li>
                     <li class="nav-item active">
-                        <?= $this->tag->linkTo(["kamar", '<i class="fa fa-bed" aria-hidden="true"></i> Kamar <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
+                        <?= $this->tag->linkTo(["kamar", '<i aria-hidden="true"></i> Kamar <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
                     </li>
                     <li class="nav-item active">
-                        <?= $this->tag->linkTo(["fasilitas", '<i class="fa fa-gift" aria-hidden="true"></i> Fasilitas <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
+                        <?= $this->tag->linkTo(["fasilitas", '<i aria-hidden="true"></i> Fasilitas <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
+                    </li>
+                    <li class="nav-item active dropdown">
+                        <?php if ($this->session->has('IS_LOGIN')) : ?>
+                            <a id='navbarDropdown' class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reservasi <span class="caret"></span>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <?= $this->tag->linkTo(["reservation/checkin", '<i  aria-hidden="true"></i> Check-In <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>
+                                <?= $this->tag->linkTo(["fasilitas/pesan", '<i aria-hidden="true"></i> Pemesanan Fasilitas <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
+                                <?= $this->tag->linkTo(["reservation/bayar", '<i aria-hidden="true"></i> Pembayaran Pemesanan <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
+                                <?= $this->tag->linkTo(["reservation/komentar", '<i aria-hidden="true"></i> Pemberian Komentar <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
+                                <?= $this->tag->linkTo(["reservation/checkout", '<i aria-hidden="true"></i> Check-Out <span class="sr-only">(current)</span>', "class" => "nav-link"]); ?>    
+                            </div>
+                        <?php endif; ?>
+                        
                     </li>
                     <li class="nav-item active">
                         <?php
@@ -80,21 +94,8 @@
                             if ($this->session->has('IS_LOGIN'))
                             {
                                 echo $this->tag->linkTo([
-                                    "article/create", 
-                                    '<i class="fa fa-plus" aria-hidden="true"></i> Add Article <span class="sr-only">(current)</span>', 
-                                    "class" => "nav-link"]
-                                );
-                            }
-                        ?>
-                    </li>
-                    <li class="nav-item active">
-                        <?php
-                            # Check User Login
-                            if ($this->session->has('IS_LOGIN'))
-                            {
-                                echo $this->tag->linkTo([
-                                    "article/manage", 
-                                    '<i class="fa fa-cogs" aria-hidden="true"></i> Manage Articles', 
+                                    "reservation/tamu", 
+                                    '<i aria-hidden="true"></i> Data Tamu', 
                                     "class" => "nav-link"]
                                 );
                             }
